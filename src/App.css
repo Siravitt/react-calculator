@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.screen {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(250, 204, 21);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.container {
+  width: 350px;
+  height: auto;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 0.5rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  color: white;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.display {
+  grid-column: span 4 / span 4;
+  padding-top: 2rem;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  font-size: 3.5rem;
+}
+
+.btn {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-self: center;
 }
 
-.App-link {
-  color: #61dafb;
+.number {
+  background-color:#323949;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.number:hover {
+  background-color: #515a70;
+  transition-duration: 400ms;
+}
+
+.operator {
+  background-color: #ed951a;
+  display: flex;
+}
+
+.operator:hover {
+  background-color: white;
+  transition-duration: 400ms;
+  color: #ed951a;
+}
+
+.active {
+  background-color: white;
+  color: #ed951a;
+}
+
+.zero-number {
+  height: 70px;
+  border-radius: 100px;
+  grid-column: span 2 / span 2;
+  cursor: pointer;
+  background-color:#323949;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zero-number:hover {
+  background-color: #515a70;
+  transition-duration: 400ms;
+}
+
+.other {
+  background-color: #a8aaad;
+  color: black;
+}
+
+.other:hover {
+  background-color: white;
+  transition-duration: 400ms;
 }
