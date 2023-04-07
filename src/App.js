@@ -9,11 +9,23 @@ function App() {
   useEffect(() => {
     if (operator) {
       setPreState(input);
-      setInput("");
+      // setInput("");
     }
   }, [operator]);
 
   const inputNum = (e) => {
+    if (operator) {
+      return setInput(e.target.innerText);
+    }
+
+    if (input === "-0") return setInput("-" + e.target.innerText);
+
+    if (input === "" && e.target.innerText === ".") {
+      return setInput("0.");
+    }
+
+    if (input.includes(".") && e.target.innerText === ".") return;
+
     if (input) {
       setInput(input + e.target.innerText);
     } else {
@@ -22,6 +34,11 @@ function App() {
   };
 
   const operatorType = (e) => {
+    if (operator !== e.target.innerText && preState) {
+      setPreState(input);
+      setInput("");
+      equal();
+    }
     setOperator(e.target.innerText);
   };
 
@@ -53,6 +70,19 @@ function App() {
     setPreState("");
   };
 
+  const percent = () => {
+    setInput(String(input / 100));
+  };
+
+  const plusMinus = () => {
+    if (input.includes("-")) {
+      setInput(input.slice(1, input.length));
+    } else {
+      if (!input) return setInput("-0")
+      setInput("-" + input);
+    }
+  };
+
   return (
     <div className="screen">
       <div className="container">
@@ -61,8 +91,12 @@ function App() {
           <div className="btn other" onClick={reset}>
             AC
           </div>
-          <div className="btn other">+/-</div>
-          <div className="btn other">%</div>
+          <div className="btn other" onClick={plusMinus}>
+            +/-
+          </div>
+          <div className="btn other" onClick={percent}>
+            %
+          </div>
           <div className="btn operator" onClick={operatorType}>
             /
           </div>
@@ -105,7 +139,9 @@ function App() {
           <div className="zero-number" onClick={inputNum}>
             0
           </div>
-          <div className="btn number">.</div>
+          <div className="btn number" onClick={inputNum}>
+            .
+          </div>
           <div className="btn operator" onClick={equal}>
             =
           </div>
