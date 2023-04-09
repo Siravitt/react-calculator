@@ -20,6 +20,8 @@ function App() {
 
     if (input === "-0") return setInput("-" + e.target.innerText);
 
+    if (input === "0") return setInput(e.target.innerText);
+
     if (input === "" && e.target.innerText === ".") {
       return setInput("0.");
     }
@@ -78,7 +80,7 @@ function App() {
     if (input.includes("-")) {
       setInput(input.slice(1, input.length));
     } else {
-      if (!input) return setInput("-0")
+      if (!input) return setInput("-0");
       setInput("-" + input);
     }
   };
